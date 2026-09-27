@@ -8,7 +8,10 @@ import numpy as np
 from pulse import (acquisition, estimation, metrics, networks, protocol,
                    response, simulation)
 
-from common import ground_truth_values
+try:  # package import (python -m experiments.acquisition_benchmark)
+    from .common import ground_truth_values
+except ImportError:  # direct script execution (python acquisition_benchmark.py)
+    from common import ground_truth_values
 
 ETA = protocol.ETA
 

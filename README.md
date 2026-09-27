@@ -22,7 +22,10 @@ pulse/                  core library
   waveforms.py          participant-held-out CCEP waveform completion
   human_timing.py       loader for empirical N1 latency distributions
   protocol.py           shared experimental constants (seeds, budgets, sizes)
+  results.py            JSON/CSV persistence with provenance metadata
 experiments/            one script per reported experiment
+tests/                  pytest suite for the identification identities
+pyproject.toml          packaging and test configuration
 ```
 
 ## Paper-to-code map
@@ -44,4 +47,30 @@ experiments/            one script per reported experiment
 | Direct hidden recruitment stress | `pulse.networks.contaminated_response` |
 | Empirical N1 timing benchmark | `experiments/human_timing.py` |
 
+
+## Usage
+
+Each script under `experiments/` exposes a `main()` and prints a small summary.
+Scripts run either as modules from the repository root or directly:
+
+```bash
+python -m experiments.check_identities      # module form
+python experiments/check_identities.py      # script form
+```
+
+Run every self-contained experiment and archive the printed summaries under
+`results/`:
+
+```bash
+python -m experiments.run_all               # add --latencies/--waveforms to
+python -m experiments.run_all --list        # include the data-dependent ones
+```
+
+The identities behind Theorems 1-2, the estimator conventions, and the
+acquisition invariants are covered by a pytest suite:
+
+```bash
+pip install -e .[dev]
+pytest
+```
 

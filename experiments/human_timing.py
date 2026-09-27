@@ -14,7 +14,10 @@ import numpy as np
 from pulse import (acquisition, baselines, estimation, human_timing, metrics,
                    networks, simulation)
 
-from common import ground_truth_values
+try:  # package import (python -m experiments.human_timing)
+    from .common import ground_truth_values
+except ImportError:  # direct script execution (python human_timing.py)
+    from common import ground_truth_values
 
 ETA = 0.8
 HORIZON = 0.25

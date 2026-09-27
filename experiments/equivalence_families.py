@@ -7,7 +7,10 @@ import numpy as np
 
 from pulse import estimation, intervention, metrics, networks, protocol, response, simulation
 
-from common import ground_truth_values
+try:  # package import (python -m experiments.equivalence_families)
+    from .common import ground_truth_values
+except ImportError:  # direct script execution (python equivalence_families.py)
+    from common import ground_truth_values
 
 ETA = 0.8
 C = np.ones(4)

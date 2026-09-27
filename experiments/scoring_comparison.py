@@ -8,7 +8,10 @@ import numpy as np
 from pulse import (baselines, estimation, intervention, metrics, networks,
                    protocol, simulation)
 
-from common import ground_truth_values
+try:  # package import (python -m experiments.scoring_comparison)
+    from .common import ground_truth_values
+except ImportError:  # direct script execution (python scoring_comparison.py)
+    from common import ground_truth_values
 
 ETA = protocol.ETA
 BUDGET = 5120

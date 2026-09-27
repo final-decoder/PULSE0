@@ -7,7 +7,10 @@ import numpy as np
 
 from pulse import estimation, intervention, metrics, networks, protocol, response, simulation
 
-from common import ground_truth_values
+try:  # package import (python -m experiments.response_windows)
+    from .common import ground_truth_values
+except ImportError:  # direct script execution (python response_windows.py)
+    from common import ground_truth_values
 
 ETA = protocol.ETA
 RADII = (0.45, 0.60, 0.72, 0.82, 0.90)

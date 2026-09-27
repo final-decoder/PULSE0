@@ -7,7 +7,10 @@ import numpy as np
 from pulse import (acquisition, estimation, intervention, metrics, networks,
                    protocol, response, simulation)
 
-from common import ground_truth_values
+try:  # package import (python -m experiments.coverage_calibration)
+    from .common import ground_truth_values
+except ImportError:  # direct script execution (python coverage_calibration.py)
+    from common import ground_truth_values
 
 ETA = protocol.ETA
 EPSILONS = (0.0, 0.1, 0.3, 0.6)
