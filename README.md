@@ -44,24 +44,4 @@ experiments/            one script per reported experiment
 | Direct hidden recruitment stress | `pulse.networks.contaminated_response` |
 | Empirical N1 timing benchmark | `experiments/human_timing.py` |
 
-## Data note
 
-The human-timing benchmark and the waveform analysis read derivatives of the
-public OpenNeuro release ds004080 (UMC Utrecht RESPect); see
-`pulse/human_timing.py` and `experiments/waveform_completion.py` for the
-expected input formats.
-
-## Usage
-
-Each script under `experiments/` exposes a `main()` and prints a small summary. Example:
-
-```python
-import numpy as np
-from pulse import networks, response, intervention
-
-net = networks.generate_network(seed=13800, p=8, q=8, radius=0.76)
-c = np.ones(net.p)
-R = response.integrated_response(net)
-r = response.observed_stationary_rates(net)
-values = intervention.single_target_value(r, c @ R, np.diag(R), eta=0.8)
-```
